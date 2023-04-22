@@ -1,8 +1,8 @@
 .app {
   margin: 0;
-  padding: 0;
+  padding: 20px;
   box-sizing: border-box;
-  background-color: rgb(32, 2, 2);
+  background-color: rgb(239, 219, 219);
 }
 .products {
   padding: 20px;
@@ -25,4 +25,14 @@
   height: 95%;
   object-fit: cover;
   margin-bottom: 3px;
+}
+
+.page__number__all {
+  text-align: center;
+}
+.page__number {
+  padding: 10px;
+  border: 1px solid black;
+  font-size: large;
+  box-sizing: border-box;
 }
