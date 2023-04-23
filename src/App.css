@@ -29,10 +29,15 @@
 
 .page__number__all {
   text-align: center;
+  user-select: none;
 }
 .page__number {
   padding: 10px;
   border: 1px solid black;
   font-size: large;
   box-sizing: border-box;
+  cursor: pointer;
+}
+.page__selected {
+  background-color: rgb(146, 105, 91);
 }
