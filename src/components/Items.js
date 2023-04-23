@@ -3,18 +3,25 @@ import "../App.css";
 const Items = () => {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
-
+  const [totalPages, setTotalPages] = useState(0);
   const getData = async () => {
-    const data = await fetch("https://dummyjson.com/products?limit=100");
+    const data = await fetch(
+      `https://dummyjson.com/products?limit=10&skip=${page * 10 - 10}`
+    );
     const json = await data.json();
     setProducts(json.products);
+    setTotalPages(json.total / 10);
   };
   useEffect(() => {
     getData();
-  }, []);
+  }, [page]);
 
   const pageHandler = (selectedPage) => {
-    if (selectedPage >= 1 && selectedPage <= 10 && selectedPage !== page)
+    if (
+      selectedPage >= 1 &&
+      selectedPage <= totalPages &&
+      selectedPage !== page
+    )
       setPage(selectedPage);
   };
 
@@ -23,7 +30,7 @@ const Items = () => {
       {products.length > 0 && (
         <div>
           <div className="products">
-            {products.slice(page * 10 - 10, page * 10).map((product) => {
+            {products.map((product) => {
               return (
                 <div className="products__single" key={product.id}>
                   <img src={product.thumbnail} alt={product.tile} />
@@ -39,7 +46,7 @@ const Items = () => {
             >
               ◀️
             </span>
-            {[...Array(products.length / 10)].map((product, i) => (
+            {[...Array(totalPages)].map((product, i) => (
               <span
                 className={
                   page === i + 1
